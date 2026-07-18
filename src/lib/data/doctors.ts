@@ -76,3 +76,17 @@ export function updateDoctor(id: string, doctor: Omit<Doctor, "id">): void {
 export function deleteDoctor(id: string): void {
   db.prepare("DELETE FROM doctors WHERE id = ?").run(id);
 }
+
+export function getDoctorReferenceCounts(id: string): { appointments: number; medications: number } {
+  const appointments = (
+    db.prepare("SELECT COUNT(*) as count FROM appointments WHERE doctor_id = ?").get(id) as {
+      count: number;
+    }
+  ).count;
+  const medications = (
+    db.prepare("SELECT COUNT(*) as count FROM medications WHERE prescribing_doctor_id = ?").get(id) as {
+      count: number;
+    }
+  ).count;
+  return { appointments, medications };
+}
