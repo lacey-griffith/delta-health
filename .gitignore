@@ -1,1 +1,21 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+build/
+
+# local database
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# env
+.env*.local
+
+# misc
 .DS_Store
+*.tsbuildinfo
+npm-debug.log*
