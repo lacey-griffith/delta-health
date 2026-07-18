@@ -43,8 +43,8 @@ a real data layer (VA.gov linking for appointments is the next priority — see 
 
 - [x] Pick a data layer — SQLite via better-sqlite3 (see `src/lib/db.ts`)
 - [x] Doctors CRUD
-- [ ] Appointments CRUD + reschedule linking
-- [ ] Medications CRUD
+- [x] Appointments CRUD + reschedule linking
+- [x] Medications CRUD
 - [ ] Notes + next-action tracking per appointment
 - [ ] VA.gov appointment linking/import
 - [ ] Auth (needed before any real patient data is stored)
