@@ -98,6 +98,14 @@ export function updateAppointment(
   ).run(data.doctorId, data.date, data.reasonForVisit, data.whatHappened ?? null, data.status, id);
 }
 
+export function findRescheduledAppointment(originalId: string): Appointment | undefined {
+  const row = db.prepare("SELECT * FROM appointments WHERE rescheduled_from_id = ?").get(originalId) as
+    | AppointmentRow
+    | undefined;
+  if (!row) return undefined;
+  return rowToAppointment(row, getNextActionsForAppointment(row.id));
+}
+
 export function rescheduleAppointment(originalId: string, newDate: string): Appointment {
   const original = getAppointment(originalId);
   if (!original) throw new Error("Original appointment not found.");
